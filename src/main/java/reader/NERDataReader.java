@@ -24,8 +24,9 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 public class NERDataReader extends JCasResourceCollectionReader_ImplBase implements TCReaderSequence {
 
-    private static final int TOKEN = 1;
-    private static final int IOB = 2;
+    private static final int TOKEN = 0;
+    private static final int IOBDE = 4;
+    private static final int IOBEN = 3;
 
     /**
      * Character encoding of the input data.
@@ -75,7 +76,7 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
             int sentenceBegin = doc.getPosition();
             int sentenceEnd = sentenceBegin;
 
-            List<Token> tokens = new ArrayList<Token>();
+            List<Token> tokens = new ArrayList<>();
 
             // Tokens, NER-IOB
             for (String[] word : words) {
@@ -88,7 +89,13 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
                 unit.addToIndexes();
 
                 TextClassificationOutcome outcome = new TextClassificationOutcome(aJCas, token.getBegin(), token.getEnd());
-                outcome.setOutcome(word[IOB]);
+                switch(language) {
+                    case "en":
+                        outcome.setOutcome(word[IOBEN]);
+                        break;
+                    case "de":
+                        outcome.setOutcome(word[IOBDE]);
+                }
                 outcome.addToIndexes();
 
                 tokens.add(token);
@@ -111,31 +118,39 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
     /**
      * Read a single sentence.
      */
-    private static List<String[]> readSentence(BufferedReader aReader) throws IOException {
-        List<String[]> words = new ArrayList<String[]>();
+    private List<String[]> readSentence(BufferedReader aReader) throws IOException {
+        List<String[]> words = new ArrayList<>();
         String line;
         while ((line = aReader.readLine()) != null) {
-            if (StringUtils.isBlank(line)) {
+            if (StringUtils.isBlank(line))
                 break; // End of sentence
-            }
-            if (line.startsWith("#")) {
+
+            if (line.startsWith("#"))
                 continue;
-            }
 
             String[] fields = line.split("\t");
-            if (fields.length != 4) {
-                throw new IOException(
-                        "Invalid file format. Line needs to have 4 tab-separted fields.");
+            int numFeatures = 0;
+            switch(language) {
+                case "de":
+                    numFeatures = 5;
+                    break;
+                case "en":
+                    numFeatures = 4;
+                    break;
             }
+
+            if (fields.length != numFeatures) {
+                throw new IOException(
+                        "Invalid file format. Line needs to have " + numFeatures + " tab-separated fields.");
+            }
+
             words.add(fields);
         }
 
-        if (line == null && words.isEmpty()) {
+        if (line == null && words.isEmpty())
             return null;
-        }
-        else {
-            return words;
-        }
+
+        return words;
     }
 
     @Override
