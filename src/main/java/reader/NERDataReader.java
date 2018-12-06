@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
@@ -125,10 +126,10 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
             if (StringUtils.isBlank(line))
                 break; // End of sentence
 
-            if (line.startsWith("#"))
+            if (line.startsWith("-DOCSTART-"))
                 continue;
 
-            String[] fields = line.split("\t");
+            String[] fields = line.split(" ");
             int numFeatures = 0;
             switch(language) {
                 case "de":
@@ -138,7 +139,6 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
                     numFeatures = 4;
                     break;
             }
-
             if (fields.length != numFeatures) {
                 throw new IOException(
                         "Invalid file format. Line needs to have " + numFeatures + " tab-separated fields.");
