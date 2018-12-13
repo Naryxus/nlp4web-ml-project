@@ -1,10 +1,12 @@
 package reader;
 
 import de.tudarmstadt.ukp.dkpro.core.api.io.JCasResourceCollectionReader_ImplBase;
+import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
 import de.tudarmstadt.ukp.dkpro.core.api.parameter.ComponentParameters;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import org.apache.commons.lang.StringUtils;
+import org.apache.uima.cas.FeatureStructure;
 import org.apache.uima.collection.CollectionException;
 import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.fit.factory.JCasBuilder;
@@ -28,6 +30,7 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
     private static final int TOKEN = 0;
     private static final int IOBDE = 4;
     private static final int IOBEN = 3;
+    private static final int CHUNKTAG = 1;
 
     /**
      * Character encoding of the input data.
@@ -88,7 +91,6 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
 
                 TextClassificationTarget unit = new TextClassificationTarget(aJCas, token.getBegin(), token.getEnd());
                 unit.addToIndexes();
-
                 TextClassificationOutcome outcome = new TextClassificationOutcome(aJCas, token.getBegin(), token.getEnd());
                 switch(language) {
                     case "en":
@@ -97,8 +99,12 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
                     case "de":
                         outcome.setOutcome(word[IOBDE]);
                 }
+                POS tmp = new POS(aJCas);
+                tmp.setPosValue(word[CHUNKTAG]);
+                tmp.setBegin(token.getBegin());
+                tmp.setEnd(token.getEnd());
+                tmp.addToIndexes();
                 outcome.addToIndexes();
-
                 tokens.add(token);
             }
 

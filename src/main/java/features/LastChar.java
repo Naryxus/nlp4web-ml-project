@@ -1,7 +1,11 @@
 package features;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.uima.cas.CAS;
+import org.apache.uima.cas.CASException;
+import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.dkpro.tc.api.exception.TextClassificationException;
 import org.dkpro.tc.api.features.Feature;
@@ -9,44 +13,76 @@ import org.dkpro.tc.api.features.FeatureExtractor;
 import org.dkpro.tc.api.features.FeatureExtractorResource_ImplBase;
 import org.dkpro.tc.api.type.TextClassificationTarget;
 
+import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
+
 public class LastChar extends FeatureExtractorResource_ImplBase implements FeatureExtractor {
 
 	@Override
 	public Set<Feature> extract(JCas view, TextClassificationTarget target) throws TextClassificationException {
 		String token = target.getCoveredText();
-		// last two chars to differentiate between NERs
+		/*
+		POS tag = (POS) JCasUtil.selectCovering(view, POS.class, target.getBegin(), target.getEnd()).get(0);
+		System.out.println(tag.toString());
+		System.out.println(tag.getCoveredText());
+		System.out.println(token + "\n\n");
+		*/
+		Set<Feature> out = new HashSet<>();
 		boolean[] r = new boolean[12];
 		// I-PER -> "er"
+		Feature erEnd = new Feature("EndWith_er", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("er"))
-			r[0] = true;
+			erEnd.setValue(true);
+		out.add(erEnd);
 		// I-ORG -> "rs", "al"
+		Feature rsEnd = new Feature("EndWith_rs", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("rs"))
-			r[1] = true;
+			rsEnd.setValue(true);
+		out.add(rsEnd);
+		Feature alEnd = new Feature("EndWith_al", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("al"))
-			r[2] = true;
+			alEnd.setValue(true);
+		out.add(alEnd);
 		// I-MISC -> "sh", "ic"
+		Feature shEnd = new Feature("EndWith_sh", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("sh"))
-			r[3] = true;
+			shEnd.setValue(true);
+		out.add(shEnd);
+		Feature icEnd = new Feature("EndWith_ic", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("ic"))
-			r[4] = true;
+			icEnd.setValue(true);
+		out.add(icEnd);
 		// I-LOC -> "S.", "ia", "nd"
+		Feature SEnd = new Feature("EndWith_S.", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("S."))
-			r[5] = true;
+			SEnd.setValue(true);
+		out.add(SEnd);
+		Feature iaEnd = new Feature("EndWith_ia", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("ia"))
-			r[6] = true;
+			iaEnd.setValue(true);
+		out.add(iaEnd);
+		Feature ndEnd = new Feature("EndWith_nd", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("nd"))
-			r[7] = true;
+			ndEnd.setValue(true);
+		out.add(ndEnd);
 		// B-ORG -> "PD", "DP", "DS"
+		Feature PDEnd = new Feature("EndWith_PD", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("PD"))
-			r[8] = true;
+			PDEnd.setValue(true);
+		out.add(PDEnd);
+		Feature DPEnd = new Feature("EndWith_DP", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("DP"))
-			r[9] = true;
+			DPEnd.setValue(true);
+		out.add(PDEnd);
+		Feature DSEnd = new Feature("EndWith_DS", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("DS"))
-			r[10] = true;
+			DSEnd.setValue(true);
+		out.add(DSEnd);
 		// B-LOC -> "WA"
+		Feature WAEnd = new Feature("EndWith_WA", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("WA"))
-			r[11] = true;
-		return new Feature("LastChar", r).asSet();
+			WAEnd.setValue(true);
+		out.add(WAEnd);
+		return out;
 	}
 
 }

@@ -53,6 +53,7 @@ public class CRFSuiteNER implements Constants {
 		DemoUtils.setDkproHome(CRFSuiteNER.class.getSimpleName());
 		
 		CRFSuiteNER demo = new CRFSuiteNER();
+		//ParameterSpace test = getParameterSpace();
 		demo.runTrainTest(getParameterSpace());
 	}
 	
