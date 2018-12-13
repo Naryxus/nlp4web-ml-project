@@ -1,0 +1,54 @@
+Micro F1 0.8596
+Macro F1 0.2691
+
+FirstLetterCapital
+NrOfChars
+LastChars = he, ed, of, ., ,
+
+train time 44 s
+
+
+
+Micro F1 0.8602
+Macro F1 0.2693
+
+FirstLetterCapital
+NrOfChars
+
+train time 30.95 s
+
+
+
+Micro F1 0.8253
+Macro F1 0.1130
+
+LastChars = he, ed, of, ., ,
+
+train time 29.33 s
+
+
+
+Micro F1 0.8253
+Macro F1 0.1130
+
+Dummy
+
+train time 43 s
+
+
+Micro F1 0.8219
+Macro F1 0.1158
+
+NrOfChars
+
+train time 38 s
+
+
+Micro F1 0.8219
+Macro F1 0.2691
+
+LastChars = er, rs, al, sh, ic, S., ia, nd, PD, DP, DS, WA
+
+LossFirst = 231868.1
+LossLast = 45241.6
+train time 42.36 s
