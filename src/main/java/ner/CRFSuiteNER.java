@@ -26,6 +26,7 @@ import org.dkpro.tc.ml.report.BatchTrainTestReport;
 
 import features.DummyFeature;
 import features.LastChar;
+import features.PosFeature;
 import reader.NERDataReader;
 import utils.DemoUtils;
 
@@ -73,10 +74,12 @@ public class CRFSuiteNER implements Constants {
 		dimReaders.put(DIM_READER_TRAIN, readerTrain);
 		dimReaders.put(DIM_READER_TEST, readerTest);
 		
+		
 		Dimension<TcFeatureSet> dimFeatureSets = Dimension.create(DIM_FEATURE_SET,
 				new TcFeatureSet(TcFeatureFactory.create(NrOfChars.class),
 						TcFeatureFactory.create(InitialCharacterUpperCase.class),
-						TcFeatureFactory.create(LastChar.class)));
+						TcFeatureFactory.create(LastChar.class),
+						TcFeatureFactory.create(PosFeature.class)));
 		
 		ParameterSpace pSpace = new ParameterSpace(Dimension.createBundle("readers", dimReaders),
 				Dimension.create(DIM_LEARNING_MODE, Constants.LM_SINGLE_LABEL),

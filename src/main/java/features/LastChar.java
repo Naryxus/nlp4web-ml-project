@@ -20,19 +20,14 @@ public class LastChar extends FeatureExtractorResource_ImplBase implements Featu
 	@Override
 	public Set<Feature> extract(JCas view, TextClassificationTarget target) throws TextClassificationException {
 		String token = target.getCoveredText();
-		/*
-		POS tag = (POS) JCasUtil.selectCovering(view, POS.class, target.getBegin(), target.getEnd()).get(0);
-		System.out.println(tag.toString());
-		System.out.println(tag.getCoveredText());
-		System.out.println(token + "\n\n");
-		*/
 		Set<Feature> out = new HashSet<>();
-		boolean[] r = new boolean[12];
+		
 		// I-PER -> "er"
 		Feature erEnd = new Feature("EndWith_er", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("er"))
 			erEnd.setValue(true);
 		out.add(erEnd);
+		
 		// I-ORG -> "rs", "al"
 		Feature rsEnd = new Feature("EndWith_rs", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("rs"))
@@ -42,6 +37,7 @@ public class LastChar extends FeatureExtractorResource_ImplBase implements Featu
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("al"))
 			alEnd.setValue(true);
 		out.add(alEnd);
+		
 		// I-MISC -> "sh", "ic"
 		Feature shEnd = new Feature("EndWith_sh", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("sh"))
@@ -51,6 +47,7 @@ public class LastChar extends FeatureExtractorResource_ImplBase implements Featu
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("ic"))
 			icEnd.setValue(true);
 		out.add(icEnd);
+		
 		// I-LOC -> "S.", "ia", "nd"
 		Feature SEnd = new Feature("EndWith_S.", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("S."))
@@ -64,6 +61,7 @@ public class LastChar extends FeatureExtractorResource_ImplBase implements Featu
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("nd"))
 			ndEnd.setValue(true);
 		out.add(ndEnd);
+		
 		// B-ORG -> "PD", "DP", "DS"
 		Feature PDEnd = new Feature("EndWith_PD", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("PD"))
@@ -77,11 +75,13 @@ public class LastChar extends FeatureExtractorResource_ImplBase implements Featu
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("DS"))
 			DSEnd.setValue(true);
 		out.add(DSEnd);
+		
 		// B-LOC -> "WA"
 		Feature WAEnd = new Feature("EndWith_WA", false);
 		if (token.length()>=2 && token.substring(token.length()-2, token.length()-1).equals("WA"))
 			WAEnd.setValue(true);
 		out.add(WAEnd);
+		
 		return out;
 	}
 
