@@ -26,8 +26,6 @@ public class PosFeature extends FeatureExtractorResource_ImplBase implements Fea
 		POS tag = JCasUtil.selectCovered(POS.class, target).get(0);//(POS) JCasUtil.selectCovering(view, POS.class, target.getBegin(), target.getEnd()).get(0);
 		Set<Feature> out = new HashSet<>();
 		
-		POS tmp = target.get;
-		
 		// I-ORG, I-PER
 		Feature posUH = new Feature("POS UH", false);
 		if (tag.getPosValue().equals("UH"))
