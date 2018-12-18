@@ -26,6 +26,8 @@ public class PosFeature extends FeatureExtractorResource_ImplBase implements Fea
 		POS tag = JCasUtil.selectCovered(POS.class, target).get(0);//(POS) JCasUtil.selectCovering(view, POS.class, target.getBegin(), target.getEnd()).get(0);
 		Set<Feature> out = new HashSet<>();
 		
+		POS tmp = target.get;
+		
 		// I-ORG, I-PER
 		Feature posUH = new Feature("POS UH", false);
 		if (tag.getPosValue().equals("UH"))
@@ -35,7 +37,7 @@ public class PosFeature extends FeatureExtractorResource_ImplBase implements Fea
 		Feature posNNSYM = new Feature("POS NNSYM", false);
 		if (tag.getPosValue().equals("NN|SYM"))
 			posNNSYM.setValue(true);
-		out.add	(posNNSYM);
+		out.add(posNNSYM);
 		
 		Feature posNNPS = new Feature("POS NNPS", false);
 		if (tag.getPosValue().equals("NNPS"))
@@ -46,8 +48,6 @@ public class PosFeature extends FeatureExtractorResource_ImplBase implements Fea
 		if (tag.getPosValue().equals("NNP"))
 			posNNP.setValue(true);
 		out.add(posNNP);
-		//System.out.println(out.toString());
-		//System.out.println(tag.toString() + "\n\n");
 		return out;
 	}
 
