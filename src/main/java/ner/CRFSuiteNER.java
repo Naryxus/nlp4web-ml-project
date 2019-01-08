@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static de.tudarmstadt.ukp.dkpro.core.api.io.ResourceCollectionReaderBase.INCLUDE_PREFIX;
+
+import javafx.geometry.Pos;
 import org.apache.uima.analysis_engine.AnalysisEngineDescription;
 import org.apache.uima.collection.CollectionReaderDescription;
 import org.apache.uima.fit.component.NoOpAnnotator;
@@ -79,7 +81,8 @@ public class CRFSuiteNER implements Constants {
 		Dimension<TcFeatureSet> dimFeatureSets = Dimension.create(DIM_FEATURE_SET,
 				new TcFeatureSet(TcFeatureFactory.create(NrOfChars.class),
 						TcFeatureFactory.create(InitialCharacterUpperCase.class),
-						TcFeatureFactory.create(LastChar.class)));
+						TcFeatureFactory.create(PosFeature.class)));
+						//TcFeatureFactory.create(LastChar.class)));
 						//TcFeatureFactory.create(PosFeature.class),
 						//TcFeatureFactory.create(PhraseFeature.class)));
 		

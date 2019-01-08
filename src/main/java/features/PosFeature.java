@@ -30,22 +30,22 @@ public class PosFeature extends FeatureExtractorResource_ImplBase implements Fea
 		Feature posUH = new Feature("POS UH", false);
 		if (tag.getPosValue().equals("UH"))
 			posUH.setValue(true);
-		out.add(posUH);
+		//out.add(posUH);
 		
 		Feature posNNSYM = new Feature("POS NNSYM", false);
 		if (tag.getPosValue().equals("NN|SYM"))
 			posNNSYM.setValue(true);
-		out.add(posNNSYM);
+		//out.add(posNNSYM);
 		
 		Feature posNNPS = new Feature("POS NNPS", false);
 		if (tag.getPosValue().equals("NNPS"))
 			posNNPS.setValue(true);
-		out.add(posNNPS);
+		//out.add(posNNPS);
 		
 		Feature posNNP = new Feature("POS NNP", false);
 		if (tag.getPosValue().equals("NNP"))
 			posNNP.setValue(true);
-		out.add(posNNP);
+		//out.add(posNNP);
 		return out;
 	}
 
