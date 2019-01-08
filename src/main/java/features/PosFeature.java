@@ -19,9 +19,9 @@ public class PosFeature extends FeatureExtractorResource_ImplBase implements Fea
 	@Override
 	public Set<Feature> extract(JCas view, TextClassificationTarget target) throws TextClassificationException {
 
-		NumberFormat perc = NumberFormat.getPercentInstance();
-		perc.setMinimumFractionDigits(2);
-		System.out.print("\r" + perc.format(target.getBegin() / 3281528.0));
+		//NumberFormat perc = NumberFormat.getPercentInstance();
+		//perc.setMinimumFractionDigits(2);
+		//System.out.print("\r" + perc.format(target.getBegin() / 3281528.0));
 
 		POS tag = JCasUtil.selectCovered(POS.class, target).get(0);//(POS) JCasUtil.selectCovering(view, POS.class, target.getBegin(), target.getEnd()).get(0);
 		Set<Feature> out = new HashSet<>();

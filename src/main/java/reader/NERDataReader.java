@@ -5,6 +5,8 @@ import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
 import de.tudarmstadt.ukp.dkpro.core.api.parameter.ComponentParameters;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
+import types.PhraseAnnotation;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.uima.cas.FeatureStructure;
 import org.apache.uima.collection.CollectionException;
@@ -30,7 +32,8 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
     private static final int TOKEN = 0;
     private static final int IOBDE = 4;
     private static final int IOBEN = 3;
-    private static final int CHUNKTAG = 1;
+    private static final int POSTAG = 1;
+    private static final int PHRASETAG = 2;
 
     /**
      * Character encoding of the input data.
@@ -100,12 +103,18 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
                         outcome.setOutcome(word[IOBDE]);
                 }
                 POS tmp = new POS(aJCas);
-                tmp.setPosValue(word[CHUNKTAG]);
+                tmp.setPosValue(word[POSTAG]);
                 tmp.setBegin(token.getBegin());
                 tmp.setEnd(token.getEnd());
                 tmp.addToIndexes();
-                outcome.addToIndexes();
+                //outcome.addToIndexes();
+                PhraseAnnotation phrase = new PhraseAnnotation(aJCas);
+                phrase.setBegin(token.getBegin());
+                phrase.setEnd(token.getEnd());
+                phrase.setPhraseTag(word[PHRASETAG]);
+                phrase.addToIndexes();
                 tokens.add(token);
+                outcome.addToIndexes();
             }
 
             // Sentence
