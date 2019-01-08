@@ -77,5 +77,32 @@ Cap, NoOfChar, ltcForO & 0.8596 & 0.2691\\
 			In a first testrun with this observations, we used only the ltc, that are typical for non named entities (ltcForO). As we can see in table \ref{tab:results}, we do not get an improvement in comparison to the baseline with this new feature. When we add this features to the capital- and the number-of-char-feature, we even decrease the evaluation in comparison to the use of both of the features.\\
 			
 			We assumed the insufficient classification as the reason for the lower evaluation. We determined just two classes: named entities and non named entities. But there are finer classes for the named entities. So in a second step we searched for the five most frequent ltc for each class and plotted it against the frequencies of the ltc in the other classes (see figure \ref{fig:ltc_for_all_classes}). The cell for a specific ltc in a specific class is brighter, the more typical the ltc is for this class (i.e. the more token in the class end with the ltc). Thus we can use a ltc as a feature, if a cell for this ltc is nearly white or if all other cells in the column of a ltc are black (i.e. this ltc does not occur in any other class).
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[scale=0.6]{img/ltc_all_classes.png}
+				\caption{This figure show the percentages of the five most frequent ltc per classes}
+				\label{fig:ltc_for_all_classes}
+			\end{figure}
+		
+		\subsection{POS-Tags}
+			With the same strategy as in figure \ref{fig:ltc_for_all_classes} we inspected the POS tags per each class. The relevant POS tags are plotted in figure \ref{fig:pos_per_class}. All other POS tags are not on a significant level except for the class "O".
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[scale=0.6]{img/pos_per_class.png}
+				\caption{Relevant POS tags for each class}
+				\label{fig:pos_per_class}
+			\end{figure}
+		
+		\subsection{Chunks}
+			As a last feature, we added the chunk annotation provided by the dataset. The relevant chunks are shown in figure \ref{fig:chunks_per_class}. We can see, that the most relevant chunk is "I-INTJ". But we have to consider, that the relative frequency of this chunk is only by 25 \% in all classes. So this chunk rather represents the class "O". 
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[scale=0.6]{img/chunks_per_class.png}
+				\caption{Relevant chunks for each class}
+				\label{fig:chunks_per_class}
+			\end{figure}
 
 \end{document}

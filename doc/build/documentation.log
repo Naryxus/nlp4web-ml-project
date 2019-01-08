@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.23)  13 DEC 2018 16:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.23)  8 JAN 2019 15:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1442,34 +1442,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
  []
 
+<img/ltc_all_classes.png, id=22, 433.62pt x 289.08pt>
+File: img/ltc_all_classes.png Graphic file (type png)
 
-LaTeX Warning: Reference `fig:ltc_for_all_classes' on page 2 undefined on input
- line 79.
+<use img/ltc_all_classes.png>
+Package pdftex.def Info: img/ltc_all_classes.png used on input line 83.
+(pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
 
-[2 <./img/last_two_letters_per_class.png>] [3 <./img/last_two_letters_compariso
-n.png>] (build/documentation.aux)
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
- ) 
+<img/pos_per_class.png, id=23, 433.62pt x 289.08pt>
+File: img/pos_per_class.png Graphic file (type png)
+
+<use img/pos_per_class.png>
+Package pdftex.def Info: img/pos_per_class.png used on input line 93.
+(pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
+ [2 <./img/last_two_letters_per_class.png>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/chunks_per_class.png, id=31, 433.62pt x 289.08pt>
+File: img/chunks_per_class.png Graphic file (type png)
+
+<use img/chunks_per_class.png>
+Package pdftex.def Info: img/chunks_per_class.png used on input line 103.
+(pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <./img/last_two_letters_comparison.png> <./img/ltc_all_classes.png>]
+[4 <./img/pos_per_class.png> <./img/chunks_per_class.png>]
+(build/documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 10585 strings out of 493029
- 158934 string characters out of 6136233
- 311036 words of memory out of 5000000
- 13840 multiletter control sequences out of 15000+600000
+ 10602 strings out of 493029
+ 159360 string characters out of 6136233
+ 311060 words of memory out of 5000000
+ 13854 multiletter control sequences out of 15000+600000
  98963 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,12n,75p,1054b,310s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/
-fonts/type1/softmake/charter/5chb8a.pfb></usr/share/texmf/fonts/type1/softmake/
-charter/5chr8a.pfb></usr/share/texmf/fonts/type1/softmake/charter/5chri8a.pfb><
-/usr/share/texmf/fonts/type1/softmake/frontpage/5fpm8a.pfb></usr/share/texmf/fo
-nts/type1/softmake/frontpage/5fpr8a.pfb></usr/share/texmf/fonts/type1/softmake/
-frontpage/5fpr8a.pfb>
-Output written on build/documentation.pdf (3 pages, 124250 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/
+8r.enc}</usr/share/texmf/fonts/type1/softmake/charter/5chb8a.pfb></usr/share/te
+xmf/fonts/type1/softmake/charter/5chr8a.pfb></usr/share/texmf/fonts/type1/softm
+ake/charter/5chri8a.pfb></usr/share/texmf/fonts/type1/softmake/frontpage/5fpm8a
+.pfb></usr/share/texmf/fonts/type1/softmake/frontpage/5fpr8a.pfb></usr/share/te
+xmf/fonts/type1/softmake/frontpage/5fpr8a.pfb>
+Output written on build/documentation.pdf (4 pages, 153971 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 63 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 39 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 54 words of extra memory for PDF output out of 10000 (max. 10000000)
 
