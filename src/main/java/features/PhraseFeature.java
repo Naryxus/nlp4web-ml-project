@@ -24,7 +24,7 @@ public class PhraseFeature extends FeatureExtractorResource_ImplBase implements 
 		Feature np = new Feature("I-NP", false);
 		if (tag.getPhraseTag().equals("I-NP"))
 			np.setValue(true);
-		out.add(np);
+		//out.add(np);
 		Feature intj = new Feature("I-INTJ", false);
 		if (tag.getPhraseTag().equals("I-INTJ"))
 			intj.setValue(true);
