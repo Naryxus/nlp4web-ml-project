@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.23)  13 DEC 2018 16:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.13)  19 DEC 2018 13:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1147,7 +1147,7 @@ LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Try loading font information for T1+5ch on input line 13.
 
 (/usr/share/texmf/tex/latex/tex-tudfonts/softmake/charter/t15ch.fd
-File: t15ch.fd 2009/08/06 Fontinst v1.927 font definitions for T1/5ch.
+File: t15ch.fd 2008/06/23 Fontinst v1.927 font definitions for T1/5ch.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1278,13 +1278,14 @@ Package pdftex.def Info: tud_logo.pdf used on input line 16.
 \@TUD@logo@tmp=\dimen149
 \TUD@titleskip=\skip118
 LaTeX Font Info:    Try loading font information for T1+5fp on input line 16.
+LaTeX Font Info:    No file T15fp.fd. on input line 16.
 
-(/usr/share/texmf/tex/latex/tex-tudfonts/softmake/frontpage/t15fp.fd
-File: t15fp.fd 2009/08/06 Fontinst v1.927 font definitions for T1/5fp.
-)
+
+LaTeX Font Warning: Font shape `T1/5fp/mb/n' undefined
+(Font)              using `T1/cmr/m/n' instead on input line 16.
+
 LaTeX Font Info:    Try loading font information for OT1+mdbch on input line 16
 .
-
 (/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/ot1mdbch.fd
 File: ot1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for OT1/mdbch.
 )
@@ -1372,6 +1373,11 @@ LaTeX Font Info:    Font shape `OML/mdput/m/it' will be
 (Font)              scaled to size 6.48601pt on input line 16.
 LaTeX Font Info:    Font shape `OML/mdput/m/it' will be
 (Font)              scaled to size 5.546pt on input line 16.
+
+
+LaTeX Font Warning: Font shape `T1/5fp/m/n' undefined
+(Font)              using `T1/cmr/m/n' instead on input line 16.
+
 \TUD@titleboxheight=\skip119
 \TUD@titleboxdepth=\skip120
 \TUD@subtitleboxheight=\skip121
@@ -1381,7 +1387,6 @@ LaTeX Font Info:    Font shape `OML/mdput/m/it' will be
 \TUD@colorbacksubtitleheight=\skip125
 \@TUD@logobox@posx=\skip126
 \@TUD@logobox@posy=\skip127
-
 <img/class_distribution.png, id=5, 433.62pt x 289.08pt>
 File: img/class_distribution.png Graphic file (type png)
 
@@ -1391,7 +1396,7 @@ Package pdftex.def Info: img/class_distribution.png used on input line 24.
 LaTeX Font Info:    Try loading font information for TS1+5ch on input line 31.
 
 (/usr/share/texmf/tex/latex/tex-tudfonts/softmake/charter/ts15ch.fd
-File: ts15ch.fd 2009/08/06 Fontinst v1.927 font definitions for TS1/5ch.
+File: ts15ch.fd 2008/06/23 Fontinst v1.927 font definitions for TS1/5ch.
 )
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1408,8 +1413,10 @@ Overfull \hbox (44.10043pt too wide) in paragraph at lines 63--64
  [][] 
  []
 
-LaTeX Font Info:    Font shape `T1/5fp/m/it' in size <9.5> not available
-(Font)              Font shape `T1/5fp/m/sl' tried instead on input line 64.
+
+LaTeX Font Warning: Font shape `T1/5fp/m/it' undefined
+(Font)              using `T1/5fp/m/n' instead on input line 64.
+
 [1
 Non-PDF special ignored!
 
@@ -1422,7 +1429,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
-<img/last_two_letters_comparison.png, id=21, 1084.05pt x 361.35pt>
+<img/last_two_letters_comparison.png, id=22, 1084.05pt x 361.35pt>
 File: img/last_two_letters_comparison.png Graphic file (type png)
 
 <use img/last_two_letters_comparison.png>
@@ -1449,27 +1456,30 @@ LaTeX Warning: Reference `fig:ltc_for_all_classes' on page 2 undefined on input
 [2 <./img/last_two_letters_per_class.png>] [3 <./img/last_two_letters_compariso
 n.png>] (build/documentation.aux)
 
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 10585 strings out of 493029
- 158934 string characters out of 6136233
- 311036 words of memory out of 5000000
- 13840 multiletter control sequences out of 15000+600000
- 98963 words of font info for 68 fonts, out of 8000000 for 9000
+ 10546 strings out of 493029
+ 158335 string characters out of 6136233
+ 310041 words of memory out of 5000000
+ 13811 multiletter control sequences out of 15000+600000
+ 40627 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,12n,75p,1054b,310s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/
-fonts/type1/softmake/charter/5chb8a.pfb></usr/share/texmf/fonts/type1/softmake/
-charter/5chr8a.pfb></usr/share/texmf/fonts/type1/softmake/charter/5chri8a.pfb><
-/usr/share/texmf/fonts/type1/softmake/frontpage/5fpm8a.pfb></usr/share/texmf/fo
-nts/type1/softmake/frontpage/5fpr8a.pfb></usr/share/texmf/fonts/type1/softmake/
-frontpage/5fpr8a.pfb>
-Output written on build/documentation.pdf (3 pages, 124250 bytes).
+ 59i,12n,75p,1054b,308s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
+fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/softmake
+/charter/5chb8a.pfb></usr/share/texmf/fonts/type1/softmake/charter/5chr8a.pfb><
+/usr/share/texmf/fonts/type1/softmake/charter/5chri8a.pfb></usr/share/texmf/fon
+ts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-s
+uper/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on build/documentation.pdf (3 pages, 157717 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 33 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  39 words of extra memory for PDF output out of 10000 (max. 10000000)
 
