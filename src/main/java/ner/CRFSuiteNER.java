@@ -39,14 +39,17 @@ public class CRFSuiteNER implements Constants {
 	public static final int NUM_FOLDS = 10;
 	public static final String corpusFilePathTrain;
 	public static final String corpusFilePathTest;
+	public static final String corpusFilePathTrain2;
 	
 	static {
 		if (LANGUAGE_CODE.equals("en")) {
 			corpusFilePathTrain = "src/main/resources/data/en";
 			corpusFilePathTest = "src/main/resources/data/en";
+			corpusFilePathTrain2 = "TODO";
 		} else {
 			corpusFilePathTrain = "src/main/resources/data/de";
 			corpusFilePathTest = "src/main/resources/data/de";
+			corpusFilePathTrain2 = "TODO";
 		}
 	}
 
@@ -67,6 +70,11 @@ public class CRFSuiteNER implements Constants {
 				NERDataReader.PARAM_SOURCE_LOCATION, corpusFilePathTrain,
 				NERDataReader.PARAM_PATTERNS, INCLUDE_PREFIX + "*.train"
 				);
+		/*CollectionReaderDescription readerTrain2 = CollectionReaderFactory.createReaderDescription(
+				NERDataReader.class, NERDataReader.PARAM_LANGUAGE, LANGUAGE_CODE,
+				NERDataReader.PARAM_SOURCE_LOCATION, corpusFilePathTrain2,
+				NERDataReader.PARAM_PATTERNS, INCLUDE_PREFIX + "*.train"
+				);*/
 		CollectionReaderDescription readerTest = CollectionReaderFactory.createReaderDescription(
 				NERDataReader.class, NERDataReader.PARAM_LANGUAGE, LANGUAGE_CODE,
 				NERDataReader.PARAM_SOURCE_LOCATION, corpusFilePathTest,
@@ -75,6 +83,7 @@ public class CRFSuiteNER implements Constants {
 		
 		Map<String, Object> dimReaders = new HashMap<String, Object>();
 		dimReaders.put(DIM_READER_TRAIN, readerTrain);
+		//dimReaders.put(DIM_READER_TRAIN, readerTrain2);
 		dimReaders.put(DIM_READER_TEST, readerTest);
 		
 		
