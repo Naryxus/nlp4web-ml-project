@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{booktabs}
+\usepackage{rotating}
 \title{Natural Language Processing and the Web}
 \subtitle{Machine Learning Project - Documentation}
 \subsubtitle{Benedikt Lins (1799381) und Stefan Thaut (1800351)\\
@@ -36,7 +37,9 @@
 		In table \ref{tab:results} we can see the improvement of the measurements with this features in comparison to the baseline. The Micro F1 is increased by about just 0.035, but the Macro F1 is increased by about 0.15.
 		
 		\subsection{Evaluation}
-			To have a baseline for an evaluation, with which we can compare our results, we added just a dummy feature to the CRF-model and did a testrun with the english trainingset and the english validationset as testset. The evaluationmetrics are shown in table \ref{tab:results}.
+			To have a baseline for an evaluation, with which we can compare our results, we added just a dummy feature to the CRF-model and did a testrun with the english trainingset and the english validationset as testset. The evaluationmetrics are shown in table \ref{tab:results}.\\
+			To know which combination of features works best, we performed a grid search, to identify the features, that give an improvement in comparison to the baseline. The results are also shown in table \ref{tab:results} in appendix \ref{app:results}.\\
+			In a first approach, we used every feature, that gives a positive improvement of the Micro and Macro F1. The evaluation of this setting results in an improvement of 0.00698 of the Micro F1 and 0.03180 of the Macro F1 in comparison to the baseline. For our interest, we added also the features, that give a negative improvement of the measures. And remarkably this setting produces again a better result, that is in total a Micro F1 of 0.87529 and a Macro F1 of 0.32658.
 			
 			\begin{table}[h]
 				\centering
@@ -55,6 +58,8 @@ Cap, NoOfChar, ltcForO & 0.8596 & 0.2691\\
 			\end{table}
 	
 	\section{Additional features}
+		In this section, we describe additional features, with which we have tried to increase the measures.
+		
 		\subsection{Last two characters of a token}
 			At first we have tried to use the last two characters (ltc) of a token as a feature. For the meaningfulness of this feature, we analysed the most frequent ltc for the class \textit{O} and for the tokens, that are not in the class \textit{O}. The ten most frequent ltc are presented in figure \ref{fig:ten_most_frequent_ltc}.
 			
@@ -104,5 +109,45 @@ Cap, NoOfChar, ltcForO & 0.8596 & 0.2691\\
 				\caption{Relevant chunks for each class}
 				\label{fig:chunks_per_class}
 			\end{figure}
+	
+	\newpage
+	\appendix
+		\section{Results}
+			\begin{sidewaystable}[htbp]
+				\centering
+\caption{Results of the evaluation. There is a "1", if the feature was used for the evaluation run. The captions of the first three columns are abbreviations (D = Dummy, FLC = FirstLetterCapital, NrC = NumberOfChars)}
+\begin{tabular}{ccccccccccccccccccccccccccc}
+\toprule
+D & FLC & NrC & er & rs & al & sh & ic & S. & ia & nd & PD & DP & DS & WA & UH & NNSYM & NNPS & NNP & I-NP & I-INTJ & Micro F1 & Macro F1\\ \midrule
+1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 0,8253 & 0,11304\\
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 0,86023 & 0,26933\\
+ & 1 & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 0,860838 & 0,270758\\ 
+ & 1 & 1 &  & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 0,860687 & 0,271021\\ 
+ & 1 & 1 &  &  & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 0,861979 & 0,274005\\ 
+ & 1 & 1 &  &  &  & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 0,86172 & 0,287434\\ 
+ & 1 & 1 &  &  &  &  & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  & 0,859933 & 0,270984\\ 
+ & 1 & 1 &  &  &  &  &  & 1 &  &  &  &  &  &  &  &  &  &  &  &  & 0,860622 & 0,269557\\ 
+ & 1 & 1 &  &  &  &  &  &  & 1 &  &  &  &  &  &  &  &  &  &  &  & 0,862539 & 0,275036\\ 
+ & 1 & 1 &  &  &  &  &  &  &  & 1 &  &  &  &  &  &  &  &  &  &  & 0,861139 & 0,271407\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  & 1 &  &  &  &  &  &  &  &  &  & 0,86045 & 0,269773\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  & 1 &  &  &  &  &  &  &  &  & 0,860342 & 0,269396\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  & 1 &  &  &  &  &  &  &  & 0,860321 & 0,269303\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  & 1 &  &  &  &  &  &  & 0,860385 & 0,269374\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  & 1 &  &  &  &  & 0,8605146 & 0,2697153\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 1 &  &  &  & 0,8604716 & 0,2696812\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 1 &  &  & 0,8614191 & 0,2759899\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 1 &  & 0,8657047 & 0,3006439\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 1 & & 0,8596963 & 0,2688408\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 1 & 0,8603424 & 0,2693733\\ 
+ & 1 & 1 & 1 & 1 & 1 & 1 &  & 1 & 1 & 1 & 1 & 1 &  & 1 &  &  &  &  &  &  & 0,867212 & 0,301131\\ 
+ & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 &  &  &  &  &  &  & 0,867126 & 0,301915\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  & 1 & 1 & 1 & 1 &  &  & 0,868978 & 0,309946\\ 
+ & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 &  &  & 0,875288 & 0,326584\\ 
+ & 1 & 1 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 1 & 1 & 0,859782 & 0,268545\\ 
+ & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 &  & 1 & 0,87503 & 0,326133\\ \bottomrule
+\end{tabular}
+\label{tab:results}
+\end{sidewaystable}
+
 
 \end{document}
