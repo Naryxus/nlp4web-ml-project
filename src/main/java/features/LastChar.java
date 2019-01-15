@@ -17,6 +17,13 @@ import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
 
 public class LastChar extends FeatureExtractorResource_ImplBase implements FeatureExtractor {
 
+	/*
+	 * This class is responsible of extracting the word ending feature. As described in the
+	 * documentation, we found that several NER correlate with different word endings. Hence,
+	 * we check for some endings. The word ending and associated NER is shown above the checks
+	 * in the form of: NER-IOB-TAG -> WORD_ENDING
+	 * For more details check the documentation file.
+	*/
 	@Override
 	public Set<Feature> extract(JCas view, TextClassificationTarget target) throws TextClassificationException {
 		String token = target.getCoveredText();

@@ -15,6 +15,13 @@ import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
 import types.PhraseAnnotation;
 
 public class PhraseFeature extends FeatureExtractorResource_ImplBase implements FeatureExtractor {
+	
+	/*
+	 * This class is the feature extractor for the phrase feature of a word,
+	 * which is given via the training data. We found some correlation between
+	 * the phrase-tag and the NER-IOB-Tag. The documentation yields more information
+	 * on how and why we choose these Tags to check for.
+	*/
 
 	@Override
 	public Set<Feature> extract(JCas view, TextClassificationTarget target) throws TextClassificationException {
@@ -24,7 +31,7 @@ public class PhraseFeature extends FeatureExtractorResource_ImplBase implements 
 		Feature np = new Feature("I-NP", false);
 		if (tag.getPhraseTag().equals("I-NP"))
 			np.setValue(true);
-		//out.add(np);
+		out.add(np);
 		Feature intj = new Feature("I-INTJ", false);
 		if (tag.getPhraseTag().equals("I-INTJ"))
 			intj.setValue(true);

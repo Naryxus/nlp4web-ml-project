@@ -16,14 +16,16 @@ import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
 
 public class PosFeature extends FeatureExtractorResource_ImplBase implements FeatureExtractor {
 
+	/*
+	 * We found a correlation between the NER-IOB classes and several POS-Tags. In this
+	 * feature extractor, we check if the current word is marked with any relevant POS-Tag.
+	 * For more information, check the docuementation, where we describe, why we chose these
+	 * specific POS-Tags to check for. 
+	*/
 	@Override
 	public Set<Feature> extract(JCas view, TextClassificationTarget target) throws TextClassificationException {
 
-		//NumberFormat perc = NumberFormat.getPercentInstance();
-		//perc.setMinimumFractionDigits(2);
-		//System.out.print("\r" + perc.format(target.getBegin() / 3281528.0));
-
-		POS tag = JCasUtil.selectCovered(POS.class, target).get(0);//(POS) JCasUtil.selectCovering(view, POS.class, target.getBegin(), target.getEnd()).get(0);
+		POS tag = JCasUtil.selectCovered(POS.class, target).get(0);
 		Set<Feature> out = new HashSet<>();
 		
 		// I-ORG, I-PER

@@ -102,12 +102,15 @@ public class NERDataReader extends JCasResourceCollectionReader_ImplBase impleme
                     case "de":
                         outcome.setOutcome(word[IOBDE]);
                 }
+                /*
+                 * Extract POS-Tag and Phrase-Tag from training data and
+                 * add it to the JCas.
+                */
                 POS tmp = new POS(aJCas);
                 tmp.setPosValue(word[POSTAG]);
                 tmp.setBegin(token.getBegin());
                 tmp.setEnd(token.getEnd());
                 tmp.addToIndexes();
-                //outcome.addToIndexes();
                 PhraseAnnotation phrase = new PhraseAnnotation(aJCas);
                 phrase.setBegin(token.getBegin());
                 phrase.setEnd(token.getEnd());

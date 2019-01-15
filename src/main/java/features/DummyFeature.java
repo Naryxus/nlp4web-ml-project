@@ -11,6 +11,11 @@ import org.dkpro.tc.api.features.FeatureExtractorResource_ImplBase;
 import org.dkpro.tc.api.type.TextClassificationTarget;
 
 public class DummyFeature extends FeatureExtractorResource_ImplBase implements FeatureExtractor {
+	
+	/*
+	 * This class creates feature, which is always true and can be used as a reference.
+	 * The results can be found in the documentation.
+	*/
 
 	@Override
 	public Set<Feature> extract(JCas view, TextClassificationTarget target) throws TextClassificationException {

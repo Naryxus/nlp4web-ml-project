@@ -57,7 +57,6 @@ public class CRFSuiteNER implements Constants {
 		DemoUtils.setDkproHome(CRFSuiteNER.class.getSimpleName());
 		
 		CRFSuiteNER demo = new CRFSuiteNER();
-		//ParameterSpace test = getParameterSpace();
 		demo.runTrainTest(getParameterSpace());
 	}
 	
@@ -76,7 +75,10 @@ public class CRFSuiteNER implements Constants {
 		dimReaders.put(DIM_READER_TRAIN, readerTrain);
 		dimReaders.put(DIM_READER_TEST, readerTest);
 		
-		
+		/* Here we add our feature classes to the model. We achieved our best results with
+		*  the baseline features plus a collection of word endings and the pos tag of the word.
+		*  For more details see the class files of PosFeature and LastChar.
+		*/
 		Dimension<TcFeatureSet> dimFeatureSets = Dimension.create(DIM_FEATURE_SET,
 				new TcFeatureSet(TcFeatureFactory.create(NrOfChars.class),
 						TcFeatureFactory.create(InitialCharacterUpperCase.class),
@@ -98,7 +100,6 @@ public class CRFSuiteNER implements Constants {
 		batch.setPreprocessing(getPreprocessing());
 		batch.setParameterSpace(pSpace);
 		batch.addReport(BatchTrainTestReport.class);
-		//batch.addReport(ContextMemoryReport.class);
 		batch.setExecutionPolicy(ExecutionPolicy.RUN_AGAIN);
 		System.out.println("Lab.run");
 		Lab.getInstance().run(batch);
