@@ -6,6 +6,7 @@
 \usepackage{booktabs}
 \usepackage{rotating}
 \usepackage{verbatim}
+\usepackage{subcaption}
 \title{Natural Language Processing and the Web}
 \subtitle{Machine Learning Project - Documentation}
 \subsubtitle{Benedikt Lins (1799381) und Stefan Thaut (1800351)\\
@@ -48,7 +49,7 @@
 		\subsection{Last two characters of a token}
 			At first we have tried to use the last two characters (ltc) of a token as a feature. For the meaningfulness of this feature, we analysed the most frequent ltc for the class \textit{O} and for the tokens, that are not in the class \textit{O}. The ten most frequent ltc are presented in figure \ref{fig:ten_most_frequent_ltc}.
 			
-			\begin{figure}[h]
+			\begin{figure}
 				\centering
 				\includegraphics[scale=0.5]{img/last_two_letters_per_class.png}
 				\caption{This figures show the ten most frequent ltc. The right side shows the ltc for the class \textit{O} and the left side shows the ltc for all tokens, that are not in class \textit{O}}
@@ -64,7 +65,7 @@
 				\label{fig:ten_most_frequent_comparison}
 			\end{figure}
 						
-			In a first testrun with this observations, we used only the ltc, that are typical for non named entities (ltcForO). As we can see in table \ref{tab:results}, we do not get an improvement in comparison to the baseline with this new feature. When we add this features to the capital- and the number-of-char-feature, we even decrease the evaluation in comparison to the use of both of the features.\\
+			In a first testrun with this observations, we used only the ltc, that are typical for non named entities (ltcForO). As we can see in table 1, we do not get an improvement in comparison to the baseline with this new feature. When we add this features to the capital- and the number-of-char-feature, we even decrease the evaluation in comparison to the use of both of the features.\\
 			
 			We assumed the insufficient classification as the reason for the lower evaluation. We determined just two classes: named entities and non named entities. But there are finer classes for the named entities. So in a second step we searched for the five most frequent ltc for each class and plotted it against the frequencies of the ltc in the other classes (see figure \ref{fig:ltc_for_all_classes}). The cell for a specific ltc in a specific class is brighter, the more typical the ltc is for this class (i.e. the more token in the class end with the ltc). Thus we can use a ltc as a feature, if a cell for this ltc is nearly white or if all other cells in the column of a ltc are black (i.e. this ltc does not occur in any other class).
 			
@@ -79,21 +80,31 @@
 			With the same strategy as in figure \ref{fig:ltc_for_all_classes} we inspected the POS tags per each class. The relevant POS tags are plotted in figure \ref{fig:pos_per_class}. All other POS tags are not on a significant level except for the class "O".
 			
 			\begin{figure}[h]
-				\centering
-				\includegraphics[scale=0.6]{img/pos_per_class.png}
-				\caption{Relevant POS tags for each class}
-				\label{fig:pos_per_class}
+				\begin{subfigure}[c]{0.5\textwidth}
+					\includegraphics[scale=0.6]{img/pos_per_class.png}
+					\subcaption{Relevant POS tags for each class}
+					\label{fig:pos_per_class}
+				\end{subfigure}
+				\begin{subfigure}[c]{0.5\textwidth}
+					\includegraphics[scale=0.6]{img/chunks_per_class.png}
+					\subcaption{Relevant chunks for each class}
+					\label{fig:chunks_per_class}
+				\end{subfigure}
+				\caption{Distribution of the POS tags, resp. chunks for the classes}
 			\end{figure}
 		
 		\subsection{Chunks}
-			As a last feature, we added the chunk annotation provided by the dataset. The relevant chunks are shown in figure \ref{fig:chunks_per_class}. We can see, that the most relevant chunk is "I-INTJ". But we have to consider, that the relative frequency of this chunk is only by 25 \% in all classes. So this chunk rather represents the class "O". 
-			
+			As a last feature, we added the chunk annotation provided by the dataset. For this feature we had to add an additional annotation type. This type serves only for searching for it in the feature classes.\\
+			The relevant chunks are shown in figure \ref{fig:chunks_per_class}. We can see, that the most relevant chunk is "I-INTJ". But we have to consider, that the relative frequency of this chunk is only by 25 \% in all classes. So this chunk rather represents the class "O". 
+
+\begin{comment}	
 			\begin{figure}[h]
 				\centering
 				\includegraphics[scale=0.6]{img/chunks_per_class.png}
 				\caption{Relevant chunks for each class}
 				\label{fig:chunks_per_class}
 			\end{figure}
+\end{comment}
 			\newpage
 	
 	\section{Results of the test set}
@@ -102,6 +113,25 @@
 \text{Micro F1:} &= 0.89022\\
 \text{Macro F1:} &= 0.44749
 		\end{align}
+	
+	\section{Project structure}
+		For a better understanding, we finally want to describe our project structure.
+		\subsection{Data}
+			We placed the data sourcefiles in the resources-folder in a folder called "data". We devided the files language dependend. So we have a folder for the german ("de") and a folder for the english ("en") files. Each of this folders contains the sourcefiles for the data, splitted into train (".train"), development (".dev") and test set (".test"). In the english folder, we also have a sourcefile, that contains the training data merged with the development data (".traindev").
+		
+		\subsection{Code}
+			Our sourcecode is placed in the "java"-folder. We have the following packages:
+			\begin{itemize}
+			\item features: Contains our self designed features
+			
+			\item ner: Contains the CRFSuite for the NER-task
+			
+			\item reader: Contains the data reader for the data sourcefiles
+			
+			\item types: Contains the additional annotation types for the DKPro pipeline
+			
+			\item utils: Contains just the util class provided by the CRFSuiteDemo from the last exercise of the lecture
+			\end{itemize}			 
 	
 	\newpage
 	\appendix
