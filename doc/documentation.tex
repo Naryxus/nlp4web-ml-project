@@ -5,6 +5,7 @@
 \usepackage{listings}
 \usepackage{booktabs}
 \usepackage{rotating}
+\usepackage{verbatim}
 \title{Natural Language Processing and the Web}
 \subtitle{Machine Learning Project - Documentation}
 \subsubtitle{Benedikt Lins (1799381) und Stefan Thaut (1800351)\\
@@ -17,8 +18,8 @@
 	
 	\section{Foundations}
 		In this Machine Learning Project we want to develop a named entity recognizer based on a machine learning approach. A named entity is a set of tokens, which form a name. Examples are "New York" or "Angela Merkel". We use a Conditional Random Field as the machine learning model.\\
-		Our training set contains a set of tokens with a chunk-annotation and the associated named entity class relating to the IOB-notation. We also have a german training set, that additionally contains a lemma for the given token.\\
-		An analysis for the english training set shows, that about 83 \% of all tokens are no named entities, as we can see in figure \ref{fig:class_distribution}
+		Our training set contains a set of tokens with a chunk-annotation and the associated named entity class relating to the IOB-notation. We also have a german training set, that additionally contains a lemma for the given token. We also have a dev set, on which we evaluate our learned model.\\
+		An analysis for the english training set shows, that about 83 \% of all tokens are no named entities, as we can see in figure \ref{fig:class_distribution}.
 		
 		\begin{figure}[h]
 			\centering
@@ -34,28 +35,12 @@
 			\item Number of characters (NoOfChar)
 		\end{itemize}
 		
-		In table \ref{tab:results} we can see the improvement of the measurements with this features in comparison to the baseline. The Micro F1 is increased by about just 0.035, but the Macro F1 is increased by about 0.15.
+		In table 1 we can see the improvement of the measurements with this features in comparison to the baseline. The Micro F1 is increased by about just 0.035, but the Macro F1 is increased by about 0.15.
 		
-		\subsection{Evaluation}
-			To have a baseline for an evaluation, with which we can compare our results, we added just a dummy feature to the CRF-model and did a testrun with the english trainingset and the english validationset as testset. The evaluationmetrics are shown in table \ref{tab:results}.\\
-			To know which combination of features works best, we performed a grid search, to identify the features, that give an improvement in comparison to the baseline. The results are also shown in table \ref{tab:results} in appendix \ref{app:results}.\\
-			In a first approach, we used every feature, that gives a positive improvement of the Micro and Macro F1. The evaluation of this setting results in an improvement of 0.00698 of the Micro F1 and 0.03180 of the Macro F1 in comparison to the baseline. For our interest, we added also the features, that give a negative improvement of the measures. And remarkably this setting produces again a better result, that is in total a Micro F1 of 0.87529 and a Macro F1 of 0.32658.
-			
-			\begin{table}[h]
-				\centering
-				\caption{Evaluation results for different feature combinations}
-				\label{tab:results}
-				\begin{tabular}{lcc}
-					\toprule
-& \textbf{Micro F1} & \textbf{Macro F1}\\
-					\midrule
-Baseline & 0.8253 & 0.1130\\
-Cap, NoOfChar & 0.8602 & 0.2693\\
-ltcForO & 0.8253 & 0.1130\\
-Cap, NoOfChar, ltcForO & 0.8596 & 0.2691\\
-					\bottomrule
-				\end{tabular}
-			\end{table}
+		\subsection{Evaluation} \label{sec:evaluation}
+			To have a baseline for an evaluation, with which we can compare our results, we added just a dummy feature to the CRF-model and did a testrun with the english trainingset and the english validationset as testset. The evaluationmetrics are shown in table 1.\\
+			To know which combination of features works best, we performed a grid search, to identify the features, that give an improvement in comparison to the baseline. The results are also shown in table 1 in appendix \ref{app:results}.\\
+			In a first approach, we used every feature, that gives a positive improvement of the Micro and Macro F1. The evaluation of this setting results in an improvement of 0.00698 of the Micro F1 and 0.03180 of the Macro F1 in comparison to the baseline. For our interest, we added also the features, that give a negative improvement of the measures except the features belonging to the chunks. And remarkably this setting produces again a better result, that is in total a Micro F1 of 0.87529 and a Macro F1 of 0.32658.
 	
 	\section{Additional features}
 		In this section, we describe additional features, with which we have tried to increase the measures.
@@ -109,10 +94,21 @@ Cap, NoOfChar, ltcForO & 0.8596 & 0.2691\\
 				\caption{Relevant chunks for each class}
 				\label{fig:chunks_per_class}
 			\end{figure}
+			\newpage
+	
+	\section{Results of the test set}
+		In this section, we present our results of the evaluation on the finally given test set. In this run, we used the same configuration, we described at the end of section \ref{sec:evaluation}. Also we used the training set merged with the dev set as a new training set. This evaluation gives the following values:
+		\begin{align}
+\text{Micro F1:} &= 0.89022\\
+\text{Macro F1:} &= 0.44749
+		\end{align}
 	
 	\newpage
 	\appendix
-		\section{Results}
+		\section{Results}\label{app:results}\centering
+			\rotatebox{90}{\includegraphics[scale=0.58]{img/results_table.png}}
+			
+\begin{comment}
 			\begin{sidewaystable}[htbp]
 				\centering
 \caption{Results of the evaluation. There is a "1", if the feature was used for the evaluation run. The captions of the first three columns are abbreviations (D = Dummy, FLC = FirstLetterCapital, NrC = NumberOfChars)}
@@ -148,6 +144,7 @@ D & FLC & NrC & er & rs & al & sh & ic & S. & ia & nd & PD & DP & DS & WA & UH &
 \end{tabular}
 \label{tab:results}
 \end{sidewaystable}
+\end{comment}
 
 
 \end{document}
