@@ -1,5 +1,6 @@
 package features;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.uima.jcas.JCas;
@@ -13,8 +14,10 @@ public class DummyFeature extends FeatureExtractorResource_ImplBase implements F
 
 	@Override
 	public Set<Feature> extract(JCas view, TextClassificationTarget target) throws TextClassificationException {
-		// TODO Auto-generated method stub
-		return new Feature("Dummy", true).asSet();
+		Set<Feature> out = new HashSet<>();
+		out.add(new Feature("Dummy", true));
+		//out.add(new Feature("Dummy2", true));
+		return out;
 	}
 
 }
